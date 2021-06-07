@@ -1,0 +1,55 @@
+@import '~/node_modules/bulma/sass/utilities/initial-variables';
+@import '~/node_modules/bulma/sass/utilities/functions';
+
+$family-sans-serif: "Nunito", sans-serif;
+$accent: #9ed42b;
+$accent-light: #d3ff62;
+$accent-dark: #6ba200;
+$accent-invert: findColorInvert($accent);
+
+$primary: #512bd4;
+$primary-light: #8b5aff;
+$primary-dark: #0000a1;
+
+$link: $primary-dark;
+$title-color: $primary;
+
+$custom-colors: ("accent": ($accent, $accent-invert, $accent-light, $accent-dark));
+//$custom-shades: ("primary-lighter": ($primary-lighter), "primary-lightest": $primary-lightest);
+
+$radius-small: 0px;
+$radius: 0px;
+$radius-large: 0px;
+
+@import "../../../node_modules/bulma/bulma.sass";
+
+@each $name, $shade in $shades {
+  .has-text-#{$name} {
+    color: nth($shade, 1) !important
+  }
+  .has-background-#{$name} {
+    background-color: nth($shade, 1) !important
+  }
+}
+
+// keep until my pr is released
+.is-clickable {
+  pointer-events: all !important;
+}
+
+.is-rounded {
+  border-radius: $radius-rounded;
+}
+
+.modal-card-wide,
+.modal-content-wide {
+  @include from($desktop) {
+    width: 800px;
+  }
+  @include from($widescreen) {
+    width: 1000px;
+  }
+  @include from($fullhd) {
+    width: 1200px;
+  }
+}
