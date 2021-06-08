@@ -10,7 +10,7 @@
 
 <script lang="ts">
 import {Component, Vue} from 'vue-property-decorator';
-import Navigation from "~/components/Navigation.vue";
+import Navigation from "~/components/layout/Navigation.vue";
 import FooterContent from "~/components/layout/FooterContent.vue";
 
 @Component({

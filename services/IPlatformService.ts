@@ -10,6 +10,16 @@ export class PlatformListVm {
   public platformType!: PlatformType;
 }
 
+export class PlatformDetailVm {
+  public id!: string;
+  public name!: string;
+  public platformType!: PlatformType;
+  public privateKey!: string;
+  public apiBaseUrl!: string;
+  public token!: string;
+}
+
 export interface IPlatformService {
-  platforms($axios: NuxtAxiosInstance): Promise<PlatformListVm[]>;
+  platforms(): Promise<PlatformListVm[]>;
+  platformDetail(id: string): Promise<PlatformDetailVm>
 }

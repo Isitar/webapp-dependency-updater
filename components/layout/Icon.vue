@@ -1,12 +1,12 @@
 <template>
-   <span class="icon" :class="{ 'is-right': isRight, 'is-left': isLeft, 'is-small':isSmall, 'is-large': isLarge}">
+   <span :class="{'icon': !noIconClass, 'is-right': isRight, 'is-left': isLeft, 'is-small':isSmall, 'is-large': isLarge}">
     <fa-layers v-if="stack">
       <fa v-for="i in icon" :icon="i" :key="i"/>
     </fa-layers>
-    <fa--layers v-else-if="stackText">
-      <fa- v-for="i in icon" :icon="i" :key="i"/>
-      <fa--layers-text :value="textValue"/>
-    </fa--layers>
+    <fa-layers v-else-if="stackText">
+      <fa v-for="i in icon" :icon="i" :key="i"/>
+      <fa-layers-text :value="textValue"/>
+    </fa-layers>
     <fa v-else :icon="icon"/>
   </span>
 </template>
@@ -24,6 +24,8 @@ export default class Icon extends Vue {
   @Prop({type: Boolean, default: false}) private isLeft!: boolean;
   @Prop({type: Boolean, default: false}) private isSmall!: boolean;
   @Prop({type: Boolean, default: false}) private isLarge!: boolean;
+  @Prop({type: Boolean, default: false}) private noIconClass!: boolean;
+
 }
 </script>
 <style lang="scss" scoped>

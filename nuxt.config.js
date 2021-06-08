@@ -42,7 +42,10 @@ export default {
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {},
+  axios: {
+    rejectUnauthorized: true,
+    baseUrl: 'https://localhost:5001/api/v1/',
+  },
 
   i18n: {
     locales: [
@@ -55,11 +58,15 @@ export default {
     fallbackLocale: 'en',
     parsePages: false,
     pages: {
-      platforms: {
+      'platforms/index': {
         de: '/platformen',
         en: '/platforms',
       },
-      projects: {
+      'platforms/_id': {
+        de: '/platformen/:id',
+        en: '/platforms/:id',
+      },
+      'projects/index': {
         de: '/projekte',
         en: '/projects',
       },
@@ -69,7 +76,7 @@ export default {
   fontawesome: {
     component: 'Fa',
     icons: {
-      solid: ['faHome'],
+      solid: ['faFingerprint', 'faSignature', 'faCloud'],
       brands: ['faGithub'],
     },
   },

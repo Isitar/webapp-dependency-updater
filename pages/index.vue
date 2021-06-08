@@ -17,9 +17,9 @@
 
 <script lang="ts">
 import {Component, Vue} from 'nuxt-property-decorator';
-import Icon from "~/components/Icon.vue";
+import Icon from "~/components/layout/Icon.vue";
 import FooterContent from "~/components/layout/FooterContent.vue";
-import Navigation from "~/components/Navigation.vue";
+import Navigation from "~/components/layout/Navigation.vue";
 
 @Component({
   components: {Navigation, FooterContent, Icon}

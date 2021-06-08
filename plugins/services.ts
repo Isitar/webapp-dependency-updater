@@ -1,9 +1,7 @@
 import AxiosPlatformService from "~/services/AxiosPlatformService";
 
-const platformService = new AxiosPlatformService();
-const Plugin = (context, inject) => {
+
+export default ({$axios}, inject: (name: string, service: object) => void) => {
+  const platformService = new AxiosPlatformService($axios);
   inject('platformService', platformService)
 };
-
-
-export default Plugin;

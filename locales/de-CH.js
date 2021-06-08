@@ -11,6 +11,12 @@ export default {
   platform: {
     singular: 'Platform',
     plural: 'Platformen',
+    id: 'Id',
+    name: 'Name',
+    platformType: 'Typ',
+    privateKey: 'Privater Schlüssel',
+    apiBaseUrl: 'API Basis URL',
+    token: 'Token',
   },
 
   paths: {
