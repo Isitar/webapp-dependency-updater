@@ -1,5 +1,5 @@
 <template>
-  <section class="hero" :class="{'is-dark': this.$store.state.ui.darkMode, 'is-light': !this.$store.state.ui.darkMode }">
+  <section class="hero">
     <div class="hero-body">
       <div class="container">
         <p class="title">{{ title }}</p>

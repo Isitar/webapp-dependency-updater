@@ -6,7 +6,7 @@
         <div class="columns">
           <div class="column">
 
-            <div class="panel" :class="{'is-dark': this.$store.state.ui.darkMode, 'is-light': !this.$store.state.ui.darkMode}">
+            <div class="panel">
               <p class="panel-heading"> {{ $t('platform.details') }} </p>
               <div class="panel-block">
                 <span class="panel-icon">
@@ -22,7 +22,7 @@
             </div>
           </div>
           <div class="column">
-            <div class="panel" :class="{'is-dark': this.$store.state.ui.darkMode, 'is-light': !this.$store.state.ui.darkMode}">
+            <div class="panel">
               <p class="panel-heading"> {{ $t('platform.auth') }} </p>
               <div class="panel-block"> {{ platform.apiBaseUrl }}</div>
               <div class="panel-block"> {{ platform.privateKey }}</div>

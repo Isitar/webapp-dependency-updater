@@ -17,7 +17,6 @@
         <NuxtLink class="navbar-item" :to="localePath('/cockpit')">{{ $t('cockpit') }}</NuxtLink>
         <NuxtLink class="navbar-item" :to="localePath('/platforms')">{{ $t('platform.plural') }}</NuxtLink>
         <NuxtLink class="navbar-item" :to="localePath('/projects')">{{ $t('project.plural') }}</NuxtLink>
-        <a class="navbar-item" @click="$store.commit('ui/setDarkMode', !$store.state.ui.darkMode)">Darkmode</a>
         <div v-if="availableLocales.length > 0" class="navbar-item has-dropdown is-hoverable">
           <div class="navbar-link">{{ $i18n.locale }}</div>
           <div class="navbar-dropdown is-boxed has-text-black">

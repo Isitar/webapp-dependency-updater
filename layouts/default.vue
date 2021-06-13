@@ -1,5 +1,5 @@
 <template>
-  <div class="is-flex is-flex-direction-column">
+  <div class="is-flex is-flex-direction-column"">
     <Navigation />
     <Nuxt class="is-flex-grow-1" />
     <footer class="footer">
