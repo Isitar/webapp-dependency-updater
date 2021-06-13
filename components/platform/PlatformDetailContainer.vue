@@ -19,12 +19,14 @@
           </div>
           <div class="column">
             <EditCard
-              :title="$t('platform.auth')">
+              :title="$t('platform.auth')"
+              @edit="editAuthOpen = true">
               <DetailList>
                 <DetailListItem :title="$t('platform.apiBaseUrl')" :icon="icons.apiBaseUrl" :description="platform.apiBaseUrl"/>
                 <DetailListItem :title="$t('platform.privateKey')" :icon="icons.privateKey" :description="platform.privateKey"/>
                 <DetailListItem :title="$t('platform.token')" :icon="icons.token" :description="platform.token"/>
               </DetailList>
+              <EditPlatformAuthentication :platform="platform" :open="editAuthOpen" @close="editAuthOpen = false" @save="() => {editAuthOpen = false; $fetch()}"/>
             </EditCard>
           </div>
         </div>
@@ -45,9 +47,10 @@ import IconListItem from "~/components/detailView/IconListItem.vue";
 import DetailList from "~/components/detailView/DetailList.vue";
 import DetailListItem from "~/components/detailView/DetailListItem.vue";
 import EditPlatformDetailsDialog from "~/components/platform/EditPlatformDetailsDialog.vue";
+import EditPlatformAuthentication from "~/components/platform/EditPlatformAuthentication.vue";
 
 @Component({
-  components: {EditPlatformDetailsDialog, DetailListItem, DetailList, IconListItem, IconList, EditCard, Icon, PageHeader}
+  components: {EditPlatformAuthentication, EditPlatformDetailsDialog, DetailListItem, DetailList, IconListItem, IconList, EditCard, Icon, PageHeader}
 })
 export default class PlatformDetailContainer extends Vue {
   @Prop({type: String, required: true})
@@ -57,6 +60,7 @@ export default class PlatformDetailContainer extends Vue {
   private platform: PlatformDetailVm | null = null;
 
   private editDetailsOpen = false;
+  private editAuthOpen = false;
 
   public async fetch() {
     this.platform = await this.$platformService.platformDetail(this.id);

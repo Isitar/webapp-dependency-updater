@@ -27,7 +27,7 @@ export class PlatformUpdate extends EditModel {
   public apiBaseUrl: string | null = null;
   public token: string | null = null;
 
-  public static fromDetail(platform: PlatformUpdate) {
+  public static fromDetail(platform: PlatformDetailVm) {
     const retVal = new PlatformUpdate();
     retVal.name = platform.name;
     retVal.platformType = platform.platformType;

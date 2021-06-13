@@ -19,7 +19,7 @@ import FieldBase from "~/components/forms/FieldBase.vue";
 })
 export default class Select extends FieldBase {
   @Prop({required: true})
-  public options!: { id, value };
+  public options!: { id: string | number, value: string }[];
 }
 </script>
 <style lang="scss" scoped>

@@ -2,17 +2,23 @@
   <ModalForm :open="open" @close="close" :title="$t('platform.editDetails')" v-if="platform" @save="e => updatePlatformDetails()">
     <template v-slot:body>
       <form>
-        <SimpleField :label="$t('platform.name')"
-                     :value.sync="platformUpdate.name"
-                     :has-error="platformUpdate.hasError('name')"
-                     :error="platformUpdate.getError('name')"
+        <SimpleField :label="$t('platform.apiBaseUrl')"
+                     :value.sync="platformUpdate.apiBaseUrl"
+                     :has-error="platformUpdate.hasError('apiBaseUrl')"
+                     :error="platformUpdate.getError('apiBaseUrl')"
         />
-        <Select :label="$t('platform.platformType')"
-                :value.sync="platformUpdate.platformType"
-                :options="platformTypes"
-                :has-error="platformUpdate.hasError('platformType')"
-                :error="platformUpdate.getError('platformType')"
+        <SimpleField is-multiline
+                     :label="$t('platform.privateKey')"
+                     :value.sync="platformUpdate.privateKey"
+                     :has-error="platformUpdate.hasError('privateKey')"
+                     :error="platformUpdate.getError('privateKey')"
         />
+        <SimpleField :label="$t('platform.token')"
+                     :value.sync="platformUpdate.token"
+                     :has-error="platformUpdate.hasError('token')"
+                     :error="platformUpdate.getError('token')"
+        />
+
       </form>
     </template>
   </ModalForm>
@@ -20,18 +26,16 @@
 
 <script lang="ts">
 import {Component, Emit, Prop, Vue} from 'vue-property-decorator';
-import ModalForm from "~/components/modal/ModalForm.vue";
-import {PlatformDetailVm, PlatformType, PlatformUpdate} from "~/services/IPlatformService";
-import SimpleField from "~/components/forms/SimpleField.vue";
 import {Watch} from "nuxt-property-decorator";
-import ValidationError from "~/services/errors/ValidationError";
-import Select from "~/components/forms/Select.vue";
-import {enumToOptions} from "~/constants/enumHelper";
+import ValidationError from "../../services/errors/ValidationError";
+import ModalForm from "../modal/ModalForm.vue";
+import SimpleField from "../forms/SimpleField.vue";
+import {PlatformDetailVm, PlatformUpdate} from "~/services/IPlatformService";
 
 @Component({
-  components: {Select, SimpleField, ModalForm}
+  components: {SimpleField, ModalForm}
 })
-export default class EditPlatformDetailsDialog extends Vue {
+export default class extends Vue {
   @Prop({type: Object, required: true})
   public platform!: PlatformDetailVm;
 
@@ -73,11 +77,6 @@ export default class EditPlatformDetailsDialog extends Vue {
         this.platformUpdate.errors = validError.errors
       });
   }
-
-  private get platformTypes(): { id: number, value: string }[] {
-    return enumToOptions(PlatformType, (k, s) => this.$t(`platformType.${k}`).toString());
-  }
-
 }
 </script>
 <style lang="scss" scoped>

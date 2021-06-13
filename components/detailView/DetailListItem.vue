@@ -5,8 +5,8 @@
     </div>
     <div class="detail-list-item-content">
       <div class="detail-list-item-title title is-size-7">{{ title }}</div>
-      <div class="detail-list-item-description subtitle is-size-6">
-        <span v-if="description">{{ description }} </span>
+      <div class="detail-list-item-description subtitle is-size-6 nl2br">
+        <template v-if="description">{{ description }} </template>
         <NullDisplay v-else />
       </div>
     </div>
@@ -25,7 +25,7 @@ export default class DetailListItem extends Vue {
   @Prop({type: String, required: true})
   public title!: string;
 
-  @Prop({type: String | null, required: true})
+  @Prop({required: true})
   public description!: string;
 
   @Prop({type: String, default: null})
