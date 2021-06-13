@@ -25,7 +25,7 @@ export default class DetailListItem extends Vue {
   @Prop({type: String, required: true})
   public title!: string;
 
-  @Prop({type: String, required: true})
+  @Prop({type: String | null, required: true})
   public description!: string;
 
   @Prop({type: String, default: null})

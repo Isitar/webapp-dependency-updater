@@ -19,6 +19,7 @@ export default {
     token: 'Token',
     details: 'Details',
     auth: 'Authentifizierung',
+    editDetails: '@:platform.details bearbeiten'
   },
   paths: {
     platforms: 'platformen',
@@ -26,5 +27,10 @@ export default {
   },
   platformType: {
     1: 'GitLab',
+    2: 'GitHub',
+  },
+  formActions: {
+    save: 'Speichern',
+    cancel: 'Abbrechen',
   }
 };

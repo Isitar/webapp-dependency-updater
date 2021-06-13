@@ -19,8 +19,14 @@ export default {
     token: 'Token',
     details: 'Details',
     auth: 'Authentication',
+    editDetails: 'Edit @:platform.details'
   },
   platformType: {
     1: 'GitLab',
-  }
+    2: 'GitHub',
+  },
+  formActions: {
+    save: 'Save',
+    cancel: 'Cancel',
+  },
 };

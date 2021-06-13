@@ -6,12 +6,15 @@
         <div class="columns">
           <div class="column">
             <EditCard
-              :title="$t('platform.details')">
+              :title="$t('platform.details')"
+              @edit="editDetailsOpen = true"
+            >
               <DetailList>
                 <DetailListItem :title="$t('platform.id')" :icon="icons.id" :description="platform.id"/>
                 <DetailListItem :title="$t('platform.name')" :icon="icons.xname" :description="platform.name"/>
                 <DetailListItem :title="$t('platform.platformType')" :icon="icons.platformType" :description="$t(`platformType.${platform.platformType}`)"/>
               </DetailList>
+              <EditPlatformDetailsDialog :platform="platform" :open="editDetailsOpen" @close="editDetailsOpen = false" @save="() => {editDetailsOpen = false; $fetch()}"/>
             </EditCard>
           </div>
           <div class="column">
@@ -23,7 +26,6 @@
                 <DetailListItem :title="$t('platform.token')" :icon="icons.token" :description="platform.token"/>
               </DetailList>
             </EditCard>
-
           </div>
         </div>
       </div>
@@ -42,17 +44,19 @@ import IconList from "~/components/detailView/IconList.vue";
 import IconListItem from "~/components/detailView/IconListItem.vue";
 import DetailList from "~/components/detailView/DetailList.vue";
 import DetailListItem from "~/components/detailView/DetailListItem.vue";
+import EditPlatformDetailsDialog from "~/components/platform/EditPlatformDetailsDialog.vue";
 
 @Component({
-  components: {DetailListItem, DetailList, IconListItem, IconList, EditCard, Icon, PageHeader}
+  components: {EditPlatformDetailsDialog, DetailListItem, DetailList, IconListItem, IconList, EditCard, Icon, PageHeader}
 })
 export default class PlatformDetailContainer extends Vue {
   @Prop({type: String, required: true})
   public id!: string;
 
   private icons = Icons;
-
   private platform: PlatformDetailVm | null = null;
+
+  private editDetailsOpen = false;
 
   public async fetch() {
     this.platform = await this.$platformService.platformDetail(this.id);
