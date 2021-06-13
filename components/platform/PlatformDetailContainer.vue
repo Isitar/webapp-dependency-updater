@@ -5,29 +5,25 @@
       <div class="container">
         <div class="columns">
           <div class="column">
-
-            <div class="panel">
-              <p class="panel-heading"> {{ $t('platform.details') }} </p>
-              <div class="panel-block">
-                <span class="panel-icon">
-                  <Icon no-icon-class :icon="icons.id"/>
-                </span> {{ platform.id }}
-              </div>
-              <div class="panel-block"> <span class="panel-icon">
-                  <Icon no-icon-class :icon="icons.xname"/>
-                </span>  {{ platform.name }}</div>
-              <div class="panel-block"> <span class="panel-icon">
-                  <Icon no-icon-class :icon="icons.platformType"/>
-                </span>  {{ platform.platformType }}</div>
-            </div>
+            <EditCard
+              :title="$t('platform.details')">
+              <DetailList>
+                <DetailListItem :title="$t('platform.id')" :icon="icons.id" :description="platform.id"/>
+                <DetailListItem :title="$t('platform.name')" :icon="icons.xname" :description="platform.name"/>
+                <DetailListItem :title="$t('platform.platformType')" :icon="icons.platformType" :description="$t(`platformType.${platform.platformType}`)"/>
+              </DetailList>
+            </EditCard>
           </div>
           <div class="column">
-            <div class="panel">
-              <p class="panel-heading"> {{ $t('platform.auth') }} </p>
-              <div class="panel-block"> {{ platform.apiBaseUrl }}</div>
-              <div class="panel-block"> {{ platform.privateKey }}</div>
-              <div class="panel-block"> {{ platform.token }}</div>
-            </div>
+            <EditCard
+              :title="$t('platform.auth')">
+              <DetailList>
+                <DetailListItem :title="$t('platform.apiBaseUrl')" :icon="icons.apiBaseUrl" :description="platform.apiBaseUrl"/>
+                <DetailListItem :title="$t('platform.privateKey')" :icon="icons.privateKey" :description="platform.privateKey"/>
+                <DetailListItem :title="$t('platform.token')" :icon="icons.token" :description="platform.token"/>
+              </DetailList>
+            </EditCard>
+
           </div>
         </div>
       </div>
@@ -41,9 +37,14 @@ import PageHeader from "~/components/layout/PageHeader.vue";
 import {PlatformDetailVm} from "~/services/IPlatformService";
 import Icon from "~/components/layout/Icon.vue";
 import Icons from "~/constants/icons";
+import EditCard from "~/components/card/EditCard.vue";
+import IconList from "~/components/detailView/IconList.vue";
+import IconListItem from "~/components/detailView/IconListItem.vue";
+import DetailList from "~/components/detailView/DetailList.vue";
+import DetailListItem from "~/components/detailView/DetailListItem.vue";
 
 @Component({
-  components: {Icon, PageHeader}
+  components: {DetailListItem, DetailList, IconListItem, IconList, EditCard, Icon, PageHeader}
 })
 export default class PlatformDetailContainer extends Vue {
   @Prop({type: String, required: true})

@@ -17,5 +17,10 @@ export default {
     privateKey: 'Private key',
     apiBaseUrl: 'API base URL',
     token: 'Token',
+    details: 'Details',
+    auth: 'Authentication',
   },
+  platformType: {
+    1: 'GitLab',
+  }
 };

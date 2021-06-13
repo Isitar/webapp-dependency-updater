@@ -76,7 +76,7 @@ export default {
   fontawesome: {
     component: 'Fa',
     icons: {
-      solid: ['faFingerprint', 'faSignature', 'faCloud'],
+      solid: ['faFingerprint', 'faSignature', 'faCloud', 'faPen', 'faTimes', 'faPlus', 'faSave', 'faKey', 'faUserSecret', 'faLink'],
       brands: ['faGithub'],
     },
   },
