@@ -9,6 +9,8 @@ export default class Icons {
   public static url = 'link';
   public static privateKey = 'user-secret';
   public static token = 'key';
+  public static gitUserName = 'id-badge';
+  public static gitUserEmail = 'envelope';
 
   public static targetBranch = 'code-branch';
   public static updateFrequency = 'stopwatch';

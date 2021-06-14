@@ -25,6 +25,7 @@ export default {
     updateDependencies: 'Update dependencies',
   },
   editSubject: 'Edit {subject}',
+  createSubject: 'Create {subject}',
   platform: {
     singular: 'Platform',
     plural: 'Platforms',
@@ -36,7 +37,10 @@ export default {
     token: 'Token',
     details: 'Details',
     auth: 'Authentication',
-    editDetails: 'Edit @:platform.details'
+    editDetails: 'Edit @:platform.details',
+    gitUserName: 'Git username',
+    gitUserEmail: 'Git email',
+    git: 'Git',
   },
   platformType: {
     1: 'GitLab',

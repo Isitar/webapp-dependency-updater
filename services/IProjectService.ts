@@ -1,4 +1,5 @@
 import EditModel from "~/forms/EditModel";
+import CreateResponse from "~/services/CreateResponse";
 
 
 export enum ProjectType {
@@ -55,7 +56,16 @@ export class ProjectUpdate extends EditModel {
   }
 }
 
+
+export class ProjectCreate extends EditModel {
+  public name: string | null = null;
+  public platformId: string | null = null;
+  public projectType: ProjectType | null = null;
+}
+
 export interface IProjectService {
+  createProject(projectCreate: ProjectCreate): Promise<CreateResponse>
+
   projects(): Promise<ProjectListVm[]>;
 
   projectDetail(id: string): Promise<ProjectDetailVm>;

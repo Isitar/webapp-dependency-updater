@@ -5,6 +5,7 @@ export default {
     slogan: 'Automatische Dependency-Updates richtig gemacht',
   },
   editSubject: '{subject} bearbeiten',
+  createSubject: '{subject} erstellen',
   project: {
     singular: 'Projekt',
     plural: 'Projekte',
@@ -35,6 +36,9 @@ export default {
     token: 'Token',
     details: 'Details',
     auth: 'Authentifizierung',
+    gitUserName: 'Git Username',
+    gitUserEmail: 'Git E-Mail',
+    git: 'Git',
   },
   paths: {
     platforms: 'platformen',

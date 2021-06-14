@@ -2,6 +2,11 @@
   <div>
     <PageHeader :title="$t('platform.plural')"/>
     <section class="section">
+      <div class="container has-text-centered">
+        <button class="button is-medium" @click="createPlatformDialogOpen = true">{{ $t('createSubject', {subject: $t('platform.singular')}) }}</button>
+      </div>
+    </section>
+    <section class="section">
       <div class="container">
         <div class="table-container">
           <table class="table is-fullwidth is-hoverable">
@@ -19,6 +24,7 @@
         </div>
       </div>
     </section>
+    <CreatePlatformDialog :open="createPlatformDialogOpen" @close="createPlatformDialogOpen = false" @save="() => { createPlatformDialogOpen = false; $fetch()}"/>
   </div>
 </template>
 
@@ -26,12 +32,14 @@
 import {Component, Vue} from 'nuxt-property-decorator';
 import PageHeader from "~/components/layout/PageHeader.vue";
 import {PlatformListVm} from "~/services/IPlatformService";
+import CreatePlatformDialog from "~/components/platform/CreatePlatformDialog.vue";
 
 @Component({
-  components: {PageHeader}
+  components: {CreatePlatformDialog, PageHeader}
 })
 export default class Platforms extends Vue {
   private platforms: PlatformListVm[] = [];
+  private createPlatformDialogOpen = false;
 
   private openPlatformDetail(id: number): void {
     this.$router.push({path: this.localePath(`/platforms/${id}`)})

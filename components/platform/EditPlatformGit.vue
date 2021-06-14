@@ -1,16 +1,22 @@
 <template>
-  <ModalForm :open="open" @close="close" :title="$t('editSubject', {subject: $t('platform.auth')})" v-if="platform" @save="e => updatePlatformDetails()">
+  <ModalForm :open="open" @close="close" :title="$t('editSubject', {subject: $t('platform.git')})" v-if="platform" @save="e => updatePlatformDetails()">
     <template v-slot:body>
       <form>
-        <SimpleField :label="$t('platform.apiBaseUrl')" :label-icon-left="icons.apiBaseUrl"
-                     :value.sync="platformUpdate.apiBaseUrl"
-                     :has-error="platformUpdate.hasError('apiBaseUrl')"
-                     :error="platformUpdate.getError('apiBaseUrl')"
+        <SimpleField :label="$t('platform.gitUserName')" :label-icon-left="icons.gitUserName"
+                     :value.sync="platformUpdate.gitUserName"
+                     :has-error="platformUpdate.hasError('gitUserName')"
+                     :error="platformUpdate.getError('gitUserName')"
         />
-        <SimpleField :label="$t('platform.token')" :label-icon-left="icons.token"
-                     :value.sync="platformUpdate.token"
-                     :has-error="platformUpdate.hasError('token')"
-                     :error="platformUpdate.getError('token')"
+        <SimpleField :label="$t('platform.gitUserEmail')" :label-icon-left="icons.gitUserEmail"
+                     :value.sync="platformUpdate.gitUserEmail"
+                     :has-error="platformUpdate.hasError('gitUserEmail')"
+                     :error="platformUpdate.getError('gitUserEmail')"
+        />
+        <SimpleField :label="$t('platform.privateKey')" :label-icon-left="icons.privateKey"
+                     is-multiline
+                     :value.sync="platformUpdate.privateKey"
+                     :has-error="platformUpdate.hasError('privateKey')"
+                     :error="platformUpdate.getError('privateKey')"
         />
 
       </form>
@@ -28,7 +34,7 @@ import {PlatformDetailVm, PlatformUpdate} from "~/services/IPlatformService";
 import Icons from "~/constants/icons";
 
 @Component({components: {SimpleField, ModalForm}})
-export default class EditPlatformAuthentication extends Vue {
+export default class EditPlatformGit extends Vue {
   @Prop({type: Object, required: true})
   public platform!: PlatformDetailVm;
 

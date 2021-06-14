@@ -1,6 +1,7 @@
-import {IProjectService, ProjectDetailVm, ProjectListVm, ProjectUpdate} from "~/services/IProjectService";
+import {IProjectService, ProjectCreate, ProjectDetailVm, ProjectListVm, ProjectUpdate} from "~/services/IProjectService";
 import {NuxtAxiosInstance} from "@nuxtjs/axios";
 import AxiosResponseCatcher from "~/services/AxiosResponseCatcher";
+import CreateResponse from "~/services/CreateResponse";
 
 export default class AxiosProjectService implements IProjectService {
   private axios: NuxtAxiosInstance;
@@ -32,6 +33,12 @@ export default class AxiosProjectService implements IProjectService {
   updateDependencies(id: string): Promise<null> {
     return this.axios.post(`projects/${id}/update-dependencies`)
       .then(() => null)
+      .catch(e => Promise.reject(AxiosResponseCatcher.handleAxiosError(e)));
+  }
+
+  createProject(projectCreate: ProjectCreate): Promise<CreateResponse> {
+    return this.axios.post<CreateResponse>(`platforms/${projectCreate.platformId}/projects`, projectCreate)
+      .then(res => res.data)
       .catch(e => Promise.reject(AxiosResponseCatcher.handleAxiosError(e)));
   }
 }

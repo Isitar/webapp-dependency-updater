@@ -19,11 +19,22 @@
           </div>
           <div class="column">
             <EditCard
+              :title="$t('platform.git')"
+              @edit="editGitOpen = true">
+              <DetailList>
+                <DetailListItem :title="$t('platform.gitUserName')" :icon="icons.gitUserName" :description="platform.gitUserName"/>
+                <DetailListItem :title="$t('platform.gitUserEmail')" :icon="icons.gitUserEmail" :description="platform.gitUserEmail"/>
+                <DetailListItem :title="$t('platform.privateKey')" :icon="icons.privateKey" :description="platform.privateKey"/>
+              </DetailList>
+              <EditPlatformGit :platform="platform" :open="editGitOpen" @close="editGitOpen = false" @save="() => {editGitOpen = false; $fetch()}"/>
+            </EditCard>
+          </div>
+          <div class="column">
+            <EditCard
               :title="$t('platform.auth')"
               @edit="editAuthOpen = true">
               <DetailList>
                 <DetailListItem :title="$t('platform.apiBaseUrl')" :icon="icons.apiBaseUrl" :description="platform.apiBaseUrl"/>
-                <DetailListItem :title="$t('platform.privateKey')" :icon="icons.privateKey" :description="platform.privateKey"/>
                 <DetailListItem :title="$t('platform.token')" :icon="icons.token" :description="platform.token"/>
               </DetailList>
               <EditPlatformAuthentication :platform="platform" :open="editAuthOpen" @close="editAuthOpen = false" @save="() => {editAuthOpen = false; $fetch()}"/>
@@ -48,9 +59,10 @@ import DetailList from "~/components/detailView/DetailList.vue";
 import DetailListItem from "~/components/detailView/DetailListItem.vue";
 import EditPlatformDetailsDialog from "~/components/platform/EditPlatformDetailsDialog.vue";
 import EditPlatformAuthentication from "~/components/platform/EditPlatformAuthentication.vue";
+import EditPlatformGit from "~/components/platform/EditPlatformGit.vue";
 
 @Component({
-  components: {EditPlatformAuthentication, EditPlatformDetailsDialog, DetailListItem, DetailList, IconListItem, IconList, EditCard, Icon, PageHeader}
+  components: {EditPlatformGit, EditPlatformAuthentication, EditPlatformDetailsDialog, DetailListItem, DetailList, IconListItem, IconList, EditCard, Icon, PageHeader}
 })
 export default class PlatformDetailContainer extends Vue {
   @Prop({type: String, required: true})
@@ -61,6 +73,7 @@ export default class PlatformDetailContainer extends Vue {
 
   private editDetailsOpen = false;
   private editAuthOpen = false;
+  private editGitOpen = false;
 
   public async fetch() {
     this.platform = await this.$platformService.platformDetail(this.id);

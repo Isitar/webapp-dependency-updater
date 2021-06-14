@@ -44,7 +44,7 @@ export default {
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     rejectUnauthorized: true,
-    baseUrl: 'https://localhost:5001/api/v1/',
+    baseUrl: 'http://localhost:5000/api/v1/',
   },
 
   i18n: {
@@ -76,7 +76,7 @@ export default {
   fontawesome: {
     component: 'Fa',
     icons: {
-      solid: ['faFingerprint', 'faSignature', 'faCloud', 'faPen', 'faTimes', 'faPlus', 'faSave', 'faKey', 'faUserSecret', 'faLink', 'faStopwatch', 'faCodeBranch', 'faCode'],
+      solid: ['faFingerprint', 'faSignature', 'faCloud', 'faPen', 'faTimes', 'faPlus', 'faSave', 'faKey', 'faUserSecret', 'faLink', 'faStopwatch', 'faCodeBranch', 'faCode', 'faIdBadge', 'faEnvelope'],
       brands: ['faGithub'],
     },
   },
