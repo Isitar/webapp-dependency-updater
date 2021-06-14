@@ -2,12 +2,12 @@
   <ModalForm :open="open" @close="close" :title="$t('editSubject', {subject: $t('platform.details')})" v-if="platform" @save="e => updatePlatformDetails()">
     <template v-slot:body>
       <form>
-        <SimpleField :label="$t('platform.name')"
+        <SimpleField :label="$t('platform.name')" :label-icon-left="icons.xname"
                      :value.sync="platformUpdate.name"
                      :has-error="platformUpdate.hasError('name')"
                      :error="platformUpdate.getError('name')"
         />
-        <Select :label="$t('platform.platformType')"
+        <Select :label="$t('platform.platformType')" :label-icon-left="icons.platformType"
                 :value.sync="platformUpdate.platformType"
                 :key-value-func="Number"
                 :options="platformTypes"
@@ -28,6 +28,7 @@ import {Watch} from "nuxt-property-decorator";
 import ValidationError from "~/services/errors/ValidationError";
 import Select from "~/components/forms/Select.vue";
 import {enumToOptions} from "~/constants/enumHelper";
+import Icons from "~/constants/icons";
 
 @Component({
   components: {Select, SimpleField, ModalForm}
@@ -42,6 +43,7 @@ export default class EditPlatformDetailsDialog extends Vue {
   }
 
   private platformUpdate: PlatformUpdate | null = null;
+  private icons = Icons;
 
   @Prop({type: Boolean, default: false})
   public open!: boolean;

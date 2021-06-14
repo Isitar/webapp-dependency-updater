@@ -2,18 +2,18 @@
   <ModalForm :open="open" @close="close" :title="$t('editSubject', {subject: $t('platform.auth')})" v-if="platform" @save="e => updatePlatformDetails()">
     <template v-slot:body>
       <form>
-        <SimpleField :label="$t('platform.apiBaseUrl')"
+        <SimpleField :label="$t('platform.apiBaseUrl')" :label-icon-left="icons.apiBaseUrl"
                      :value.sync="platformUpdate.apiBaseUrl"
                      :has-error="platformUpdate.hasError('apiBaseUrl')"
                      :error="platformUpdate.getError('apiBaseUrl')"
         />
         <SimpleField is-multiline
-                     :label="$t('platform.privateKey')"
+                     :label="$t('platform.privateKey')" :label-icon-left="icons.privateKey"
                      :value.sync="platformUpdate.privateKey"
                      :has-error="platformUpdate.hasError('privateKey')"
                      :error="platformUpdate.getError('privateKey')"
         />
-        <SimpleField :label="$t('platform.token')"
+        <SimpleField :label="$t('platform.token')" :label-icon-left="icons.token"
                      :value.sync="platformUpdate.token"
                      :has-error="platformUpdate.hasError('token')"
                      :error="platformUpdate.getError('token')"
@@ -31,6 +31,7 @@ import ValidationError from "../../services/errors/ValidationError";
 import ModalForm from "../modal/ModalForm.vue";
 import SimpleField from "../forms/SimpleField.vue";
 import {PlatformDetailVm, PlatformUpdate} from "~/services/IPlatformService";
+import Icons from "~/constants/icons";
 
 @Component({components: {SimpleField, ModalForm}})
 export default class extends Vue {
@@ -43,6 +44,7 @@ export default class extends Vue {
   }
 
   private platformUpdate: PlatformUpdate | null = null;
+  private icons = Icons;
 
   @Prop({type: Boolean, default: false})
   public open!: boolean;
