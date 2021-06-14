@@ -7,7 +7,21 @@ export default {
   project: {
     singular: 'Project',
     plural: 'Projects',
+    name: 'Name',
+    id: 'Id',
+    platformId: '@:platform.singular @:platform.id',
+    platformName: '@:platform.singular',
+    projectType: 'Project Types',
+    updateFrequency: 'Update frequency',
+    targetBranch: 'Target branch',
+    platformProjectId: 'external project id',
+    url: 'URL',
+    details: 'Details',
+    repositoryInformation: 'Repository infos',
+    updaterInformation: 'Updater infos',
+    editDetails: 'Edit @:project.details',
   },
+  editSubject: 'Edit {subject}',
   platform: {
     singular: 'Platform',
     plural: 'Platforms',
@@ -24,6 +38,11 @@ export default {
   platformType: {
     1: 'GitLab',
     2: 'GitHub',
+  },
+  projectType: {
+    0: 'Undefined',
+    1: 'Dotnet',
+    2: 'Npm',
   },
   formActions: {
     save: 'Save',

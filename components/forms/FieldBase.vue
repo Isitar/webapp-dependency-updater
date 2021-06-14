@@ -9,7 +9,7 @@
       <div class="field-body">
         <div class="field">
           <p class="control is-expanded" :class="{'has-icons-left':hasIconLeft, 'has-icons-right':hasIconRight}">
-            <slot name="input">
+            <slot name="input" :value="{value}">
               <input class="input" :class="{'is-danger': hasError}" :value="value" @input="$emit('update:value', $event.target.value)">
               <Icon is-small is-left :icon="iconLeft" v-if="hasIconLeft" @click.native.stop="iconClick" :class="{'is-clickable': $listeners.iconClick}"/>
               <Icon is-small is-right :icon="iconRight" v-if="hasIconRight" @click.native.stop="iconClick" :class="{'is-clickable': $listeners.iconClick}"/>

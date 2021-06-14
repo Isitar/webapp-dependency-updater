@@ -1,5 +1,5 @@
 <template>
-  <ModalForm :open="open" @close="close" :title="$t('platform.editDetails')" v-if="platform" @save="e => updatePlatformDetails()">
+  <ModalForm :open="open" @close="close" :title="$t('editSubject', {subject: $t('platform.details')})" v-if="platform" @save="e => updatePlatformDetails()">
     <template v-slot:body>
       <form>
         <SimpleField :label="$t('platform.name')"
@@ -9,6 +9,7 @@
         />
         <Select :label="$t('platform.platformType')"
                 :value.sync="platformUpdate.platformType"
+                :key-value-func="Number"
                 :options="platformTypes"
                 :has-error="platformUpdate.hasError('platformType')"
                 :error="platformUpdate.getError('platformType')"

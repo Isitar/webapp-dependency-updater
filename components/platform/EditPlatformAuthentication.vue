@@ -1,5 +1,5 @@
 <template>
-  <ModalForm :open="open" @close="close" :title="$t('platform.editDetails')" v-if="platform" @save="e => updatePlatformDetails()">
+  <ModalForm :open="open" @close="close" :title="$t('editSubject', {subject: $t('platform.auth')})" v-if="platform" @save="e => updatePlatformDetails()">
     <template v-slot:body>
       <form>
         <SimpleField :label="$t('platform.apiBaseUrl')"
@@ -32,9 +32,7 @@ import ModalForm from "../modal/ModalForm.vue";
 import SimpleField from "../forms/SimpleField.vue";
 import {PlatformDetailVm, PlatformUpdate} from "~/services/IPlatformService";
 
-@Component({
-  components: {SimpleField, ModalForm}
-})
+@Component({components: {SimpleField, ModalForm}})
 export default class extends Vue {
   @Prop({type: Object, required: true})
   public platform!: PlatformDetailVm;
