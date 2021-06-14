@@ -1,5 +1,5 @@
 <template>
-  <FieldBase :label="label" :has-error="hasError" :error="error" :has-icon-left="hasIconLeft" :has-icon-right="hasIconRight" :horizontal="horizontal" :icon-left="iconLeft" :icon-right="iconRight" v-if="options">
+  <FieldBase :label="label" :has-error="hasError" :error="error" :has-icon-left="hasIconLeft" :has-icon-right="hasIconRight" :horizontal="horizontal" :icon-left="iconLeft" :icon-right="iconRight" :label-icon-left="labelIconLeft" v-if="options">
     <template v-slot:input="inputVal">
       <div class="select is-fullwidth" :class="{'is-multiple': multiple}">
         <select v-model="valueInternal" :multiple="multiple" @input="updateValue" v-if="options">
@@ -25,7 +25,7 @@ export default class Select extends FieldBase {
   @Prop({type: Boolean, default: false})
   public multiple!: boolean;
 
-  private valueInternal;
+  private valueInternal: any;
 
   @Watch('value', {immediate: true})
   private onValueChangeD() {
@@ -36,11 +36,12 @@ export default class Select extends FieldBase {
   public keyValueFunc!: (s: string) => any;
 
   @Emit('update:value')
-  public updateValue(event: Event): number[] | string[] {
+  public updateValue(event: Event): any {
+    const target = event?.target as HTMLSelectElement;
     if (this.multiple) {
-      return Array.from(event.target.selectedOptions, opts => this.keyValueFunc(opts.value));
+      return Array.from(target.selectedOptions, (opts: HTMLOptionElement) => this.keyValueFunc(opts.value));
     }
-    return this.keyValueFunc(event.target.value);
+    return this.keyValueFunc(target.value);
   }
 
 }

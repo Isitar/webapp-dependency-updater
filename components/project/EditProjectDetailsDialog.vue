@@ -2,7 +2,7 @@
   <ModalForm :open="open" @close="close" :title="$t('editSubject', {subject: $t('project.details')})" v-if="project" @save="e => updateProjectDetails()">
     <template v-slot:body>
       <form>
-        <SimpleField :label="$t('project.name')"
+        <SimpleField :label="$t('project.name')" :label-icon-left="icons.xname"
                      :value.sync="projectUpdate.name"
                      :has-error="projectUpdate.hasError('name')"
                      :error="projectUpdate.getError('name')"
@@ -15,12 +15,12 @@
 <script lang="ts">
 import {Component, Emit, Prop, Vue} from 'vue-property-decorator';
 import ModalForm from "~/components/modal/ModalForm.vue";
-import {ProjectDetailVm, ProjectType, ProjectUpdate} from "~/services/IProjectService";
+import {ProjectDetailVm, ProjectUpdate} from "~/services/IProjectService";
 import SimpleField from "~/components/forms/SimpleField.vue";
 import {Watch} from "nuxt-property-decorator";
 import ValidationError from "~/services/errors/ValidationError";
 import Select from "~/components/forms/Select.vue";
-import {enumToOptions} from "~/constants/enumHelper";
+import Icons from "~/constants/icons";
 
 @Component({
   components: {Select, SimpleField, ModalForm}
@@ -35,6 +35,7 @@ export default class EditProjectDetailsDialog extends Vue {
   }
 
   private projectUpdate: ProjectUpdate | null = null;
+  private icons = Icons;
 
   @Prop({type: Boolean, default: false})
   public open!: boolean;

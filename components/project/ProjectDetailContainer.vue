@@ -76,8 +76,11 @@ export default class ProjectDetailContainer extends Vue {
   private editRepoInfosOpen = false;
   private editUpdaterInfosOpen = false;
 
-  private get projectTypeDescription(): string {
-    return bitToFormValue(ProjectType, this.project?.projectType).map(val => this.$t(`projectType.${val}`)).reduce((carry, item) => carry + ', ' + item);
+  private get projectTypeDescription(): string | null {
+    if (null === this.project) {
+      return null;
+    }
+    return bitToFormValue(ProjectType, this.project.projectType).map(val => this.$t(`projectType.${val}`).toString()).reduce((carry, item) => carry + ', ' + item);
   }
 
   public async fetch() {

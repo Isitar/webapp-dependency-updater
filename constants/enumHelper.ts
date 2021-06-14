@@ -21,16 +21,10 @@ export function enumToBitValues(enumValue: object) {
 }
 
 export function formValueToBit(enumeration: object, selection: number[]) {
-
-  const bits = enumToBitValues(enumeration)
-  const retVal = selection.reduce((total, selected) => total + selected, 0,)
-  console.log('formValueToBit', 'enum: ', enumeration, 'selection:', selection, 'retval', retVal);
-  return retVal;
+  return selection.reduce((total, selected) => total + selected, 0,);
 }
 
 export function bitToFormValue(enumeration: object, bit: number): number[] {
   const bits = enumToBitValues(enumeration)
-  const retVal = bits.filter((b) => (bit & b) === b && b !== 0)
-  console.log('converting bits to form value, bit val: ', bit, 'ret val: ', retVal)
-  return retVal;
+  return bits.filter((b) => (bit & b) === b && b !== 0);
 }

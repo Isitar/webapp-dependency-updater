@@ -3,7 +3,10 @@
     <template v-if="horizontal">
       <slot name="label">
         <div v-if="label" class="field-label is-normal">
-          <label class="label">{{ label }}</label>
+          <label class="label">
+            <Icon v-if="hasLabelIconLeft" :icon="labelIconLeft"/>
+            {{ label }}
+          </label>
         </div>
       </slot>
       <div class="field-body">
@@ -20,7 +23,14 @@
     </template>
     <template v-else>
       <slot name="label">
-        <label v-if="label" class="label">{{ label }}</label>
+        <label class="label">
+          <span class="icon-text" v-if="hasLabelIconLeft">
+            <Icon :icon="labelIconLeft"/>
+            <span> {{ label }}</span>
+          </span>
+          <span v-else>{{ label }}</span>
+        </label>
+
       </slot>
       <div class="control" :class="{'has-icons-left':hasIconLeft, 'has-icons-right':hasIconRight}">
         <slot name="input">
@@ -47,16 +57,27 @@ export default class FieldBase extends Vue {
   @Prop() label!: string | null;
   @Prop({type: Boolean, default: false}) horizontal!: boolean;
   @Prop({type: Boolean, default: false}) hasError!: boolean;
-  @Prop({type: Boolean, default: false}) hasIconLeft!: boolean;
-  @Prop({type: Boolean, default: false}) hasIconRight!: boolean;
   @Prop() error!: string | null;
   @Prop() iconLeft!: string | null;
   @Prop() iconRight!: string | null;
+  @Prop() labelIconLeft!: string | null;
 
 
   @Emit('iconClick')
   public iconClick(event: Event): Event {
     return event;
+  }
+
+  protected get hasLabelIconLeft(): boolean {
+    return null !== this.labelIconLeft && undefined !== this.labelIconLeft;
+  }
+
+  protected get hasIconLeft(): boolean {
+    return null !== this.iconLeft && undefined !== this.iconLeft;
+  }
+
+  protected get hasIconRight(): boolean {
+    return null !== this.iconRight && undefined !== this.iconRight;
   }
 
 }

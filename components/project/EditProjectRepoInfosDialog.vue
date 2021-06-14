@@ -2,12 +2,12 @@
   <ModalForm :open="open" @close="close" :title="$t('editSubject', {subject: $t('project.repositoryInformation')})" v-if="project" @save="e => updateProjectDetails()">
     <template v-slot:body>
       <form>
-        <SimpleField :label="$t('project.platformProjectId')"
+        <SimpleField :label="$t('project.platformProjectId')" :label-icon-left="icons.id"
                      :value.sync="projectUpdate.platformProjectId"
                      :has-error="projectUpdate.hasError('platformProjectId')"
                      :error="projectUpdate.getError('platformProjectId')"
         />
-        <SimpleField :label="$t('project.url')"
+        <SimpleField :label="$t('project.url')" :label-icon-left="icons.url"
                      :value.sync="projectUpdate.url"
                      :has-error="projectUpdate.hasError('url')"
                      :error="projectUpdate.getError('url')"
@@ -20,12 +20,12 @@
 <script lang="ts">
 import {Component, Emit, Prop, Vue} from 'vue-property-decorator';
 import ModalForm from "~/components/modal/ModalForm.vue";
-import {ProjectDetailVm, ProjectType, ProjectUpdate} from "~/services/IProjectService";
+import {ProjectDetailVm, ProjectUpdate} from "~/services/IProjectService";
 import SimpleField from "~/components/forms/SimpleField.vue";
 import {Watch} from "nuxt-property-decorator";
 import ValidationError from "~/services/errors/ValidationError";
 import Select from "~/components/forms/Select.vue";
-import {enumToOptions} from "~/constants/enumHelper";
+import Icons from "~/constants/icons";
 
 @Component({
   components: {Select, SimpleField, ModalForm}
@@ -39,6 +39,7 @@ export default class EditProjectRepoInfosDialog extends Vue {
     this.resetForm();
   }
 
+  private icons = Icons;
   private projectUpdate: ProjectUpdate | null = null;
 
   @Prop({type: Boolean, default: false})

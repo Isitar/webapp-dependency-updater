@@ -1,22 +1,22 @@
 <template>
-  <ModalForm :open="open" @close="close" :title="$t('editSubject', {subject: $t('project.repositoryInformation')})" v-if="project" @save="e => updateProjectDetails()">
+  <ModalForm :open="open" @close="close" :title="$t('editSubject', {subject: $t('project.updaterInformation')})" v-if="project" @save="e => updateProjectDetails()">
     <template v-slot:body>
       <form>
-        <SimpleField :label="$t('project.targetBranch')"
+        <SimpleField :label="$t('project.targetBranch')" :label-icon-left="icons.targetBranch"
                      :value.sync="projectUpdate.targetBranch"
                      :has-error="projectUpdate.hasError('targetBranch')"
                      :error="projectUpdate.getError('targetBranch')"
         />
-        <SimpleField :label="$t('project.updateFrequency')"
+        <SimpleField :label="$t('project.updateFrequency')" :label-icon-left="icons.updateFrequency"
                      :value.sync="projectUpdate.updateFrequency"
                      :has-error="projectUpdate.hasError('updateFrequency')"
                      :error="projectUpdate.getError('updateFrequency')"
         />
-        <Select :label="$t('project.projectType')"
+        <Select :label="$t('project.projectType')" :label-icon-left="icons.projectType"
                 multiple
                 :value="selectedProjectTypes"
-                :key-value-func="Number"
                 @update:value="updateProjectTypeOnModel"
+                :key-value-func="Number"
                 :options="projectTypeOptions"
                 :has-error="projectUpdate.hasError('projectType')"
                 :error="projectUpdate.getError('projectType')"
@@ -35,6 +35,7 @@ import {Watch} from "nuxt-property-decorator";
 import ValidationError from "~/services/errors/ValidationError";
 import Select from "~/components/forms/Select.vue";
 import {bitToFormValue, enumToOptions, formValueToBit} from "~/constants/enumHelper";
+import Icons from "~/constants/icons";
 
 @Component({
   components: {Select, SimpleField, ModalForm}
@@ -50,10 +51,13 @@ export default class EditUpdaterInfosDialog extends Vue {
 
   private projectUpdate: ProjectUpdate | null = null;
   private selectedProjectTypes: ProjectType[] = [];
+  private icons = Icons;
 
   private updateProjectTypeOnModel(newVals: number[]) {
     this.selectedProjectTypes = newVals;
-    this.projectUpdate?.projectType = formValueToBit(ProjectType, this.selectedProjectTypes);
+    if (null !== this.projectUpdate) {
+      this.projectUpdate.projectType = formValueToBit(ProjectType, this.selectedProjectTypes);
+    }
   }
 
 
@@ -73,7 +77,9 @@ export default class EditUpdaterInfosDialog extends Vue {
 
   private resetForm() {
     this.projectUpdate = ProjectUpdate.fromDetail(this.project);
-    this.selectedProjectTypes = bitToFormValue(ProjectType, this.projectUpdate.projectType);
+    if (null !== this.projectUpdate.projectType) {
+      this.selectedProjectTypes = bitToFormValue(ProjectType, this.projectUpdate.projectType);
+    }
   }
 
   private updateProjectDetails() {
