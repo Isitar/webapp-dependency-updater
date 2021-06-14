@@ -20,6 +20,9 @@ export default {
     details: 'Details',
     repositoryInformation: 'Repository Informationen',
     updaterInformation: 'Updater Informationen',
+    outdated: 'Updates verfügbar',
+    upToDate: 'Aktuell',
+    updateDependencies: 'Abhängigkeiten aktualisieren',
   },
   platform: {
     singular: 'Platform',

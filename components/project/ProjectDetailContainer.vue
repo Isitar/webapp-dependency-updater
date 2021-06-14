@@ -1,6 +1,17 @@
 <template>
   <div v-if="project">
-    <PageHeader :title="project.name"/>
+    <PageHeader :title="project.name">
+      <template v-slot:title>
+        <p class="title">{{ project.name }}
+          <ProjectStateTag :is-outdated="project.isOutdated"/>
+        </p>
+      </template>
+    </PageHeader>
+    <section class="section">
+      <div class="container has-text-centered">
+        <button class="button is-large is-primary" @click="updateDependencies()">{{$t('project.updateDependencies')}}</button>
+      </div>
+    </section>
     <section class="section">
       <div class="container">
         <div class="columns">
@@ -61,9 +72,10 @@ import EditProjectDetailsDialog from "~/components/project/EditProjectDetailsDia
 import EditProjectRepoInfosDialog from "~/components/project/EditProjectRepoInfosDialog.vue";
 import EditUpdaterInfosDialog from "~/components/project/EditUpdaterInfosDialog.vue";
 import {bitToFormValue} from "~/constants/enumHelper";
+import ProjectStateTag from "~/components/project/ProjectStateTag.vue";
 
 @Component({
-  components: {EditUpdaterInfosDialog, EditProjectRepoInfosDialog, EditProjectDetailsDialog, DetailListItem, DetailList, IconListItem, IconList, EditCard, Icon, PageHeader}
+  components: {ProjectStateTag, EditUpdaterInfosDialog, EditProjectRepoInfosDialog, EditProjectDetailsDialog, DetailListItem, DetailList, IconListItem, IconList, EditCard, Icon, PageHeader}
 })
 export default class ProjectDetailContainer extends Vue {
   @Prop({type: String, required: true})
@@ -81,6 +93,10 @@ export default class ProjectDetailContainer extends Vue {
       return null;
     }
     return bitToFormValue(ProjectType, this.project.projectType).map(val => this.$t(`projectType.${val}`).toString()).reduce((carry, item) => carry + ', ' + item);
+  }
+
+  private updateDependencies() {
+    this.$projectService.updateDependencies(this.id)
   }
 
   public async fetch() {

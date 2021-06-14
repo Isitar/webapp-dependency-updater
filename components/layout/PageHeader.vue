@@ -2,8 +2,10 @@
   <section class="hero is-light">
     <div class="hero-body">
       <div class="container">
-        <p class="title">{{ title }}</p>
-        <p v-if="subtitle !== null" class="subtitle">{{ subtitle }}</p>
+        <slot name="title">
+          <p class="title">{{ title }}</p>
+          <p v-if="subtitle !== null" class="subtitle">{{ subtitle }}</p>
+        </slot>
       </div>
     </div>
   </section>

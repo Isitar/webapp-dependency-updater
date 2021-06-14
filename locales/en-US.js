@@ -20,6 +20,9 @@ export default {
     repositoryInformation: 'Repository infos',
     updaterInformation: 'Updater infos',
     editDetails: 'Edit @:project.details',
+    outdated: 'Outdated',
+    upToDate: 'Up to date',
+    updateDependencies: 'Update dependencies',
   },
   editSubject: 'Edit {subject}',
   platform: {

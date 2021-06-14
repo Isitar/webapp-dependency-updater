@@ -10,7 +10,9 @@ export enum ProjectType {
 export class ProjectListVm {
   public id!: string;
   public name!: string;
-  public platform!: string
+  public platform!: string;
+
+  public isOutdated!: boolean;
 }
 
 export class ProjectDetailVm {
@@ -24,6 +26,8 @@ export class ProjectDetailVm {
   public targetBranch!: string;
   public platformProjectId!: string;
   public url!: string;
+
+  public isOutdated!: boolean;
 }
 
 export class ProjectUpdate extends EditModel {
@@ -57,4 +61,6 @@ export interface IProjectService {
   projectDetail(id: string): Promise<ProjectDetailVm>;
 
   updateProject(id: string, project: ProjectUpdate): Promise<null>;
+
+  updateDependencies(id: string): Promise<null>;
 }
