@@ -6,6 +6,7 @@ export default {
   },
   editSubject: '{subject} bearbeiten',
   createSubject: '{subject} erstellen',
+  noFilter: 'Kein Filter',
   project: {
     singular: 'Projekt',
     plural: 'Projekte',
@@ -24,6 +25,8 @@ export default {
     outdated: 'Updates verfügbar',
     upToDate: 'Aktuell',
     updateDependencies: 'Abhängigkeiten aktualisieren',
+    updateRequested: "Aktualisierung ausstehend",
+    updating: "Am aktualisieren",
   },
   platform: {
     singular: 'Platform',

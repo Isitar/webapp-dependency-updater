@@ -14,6 +14,8 @@ export class ProjectListVm {
   public platform!: string;
 
   public isOutdated!: boolean;
+  public checkRequested!: boolean;
+  public isChecking!: boolean;
 }
 
 export class ProjectDetailVm {
@@ -29,6 +31,12 @@ export class ProjectDetailVm {
   public url!: string;
 
   public isOutdated!: boolean;
+  public checkRequested!: boolean;
+  public isChecking!: boolean;
+}
+
+export class ProjectListFilter {
+  public isOutdated: boolean | null = null;
 }
 
 export class ProjectUpdate extends EditModel {
@@ -66,7 +74,7 @@ export class ProjectCreate extends EditModel {
 export interface IProjectService {
   createProject(projectCreate: ProjectCreate): Promise<CreateResponse>
 
-  projects(): Promise<ProjectListVm[]>;
+  projects(projectListFilter: ProjectListFilter): Promise<ProjectListVm[]>;
 
   projectDetail(id: string): Promise<ProjectDetailVm>;
 

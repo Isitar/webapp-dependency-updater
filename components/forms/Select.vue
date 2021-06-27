@@ -1,7 +1,7 @@
 <template>
   <FieldBase :label="label" :has-error="hasError" :error="error" :has-icon-left="hasIconLeft" :has-icon-right="hasIconRight" :horizontal="horizontal" :icon-left="iconLeft" :icon-right="iconRight" :label-icon-left="labelIconLeft" v-if="options">
     <template v-slot:input="inputVal">
-      <div class="select is-fullwidth" :class="{'is-multiple': multiple}">
+      <div class="select is-fullwidth" :class="{'is-multiple': multiple, 'is-small': isSmall}">
         <select v-model="valueInternal" :multiple="multiple" @input="updateValue" v-if="options">
           <option v-for="opt in options" :key="opt.id" :value="opt.id">{{ opt.value }}</option>
         </select>
@@ -20,10 +20,13 @@ import {Watch} from "nuxt-property-decorator";
 })
 export default class Select extends FieldBase {
   @Prop({required: true})
-  public options!: { id: string | number, value: string }[];
+  public options!: SelectOption[];
 
   @Prop({type: Boolean, default: false})
   public multiple!: boolean;
+
+  @Prop({type: Boolean, default: false})
+  public isSmall!: boolean;
 
   private valueInternal: any;
 
@@ -32,7 +35,7 @@ export default class Select extends FieldBase {
     this.valueInternal = this.value;
   }
 
-  @Prop({default: (s: string) => s})
+  @Prop({type: Function, default: (s: string) => s})
   public keyValueFunc!: (s: string) => any;
 
   @Emit('update:value')
@@ -43,7 +46,16 @@ export default class Select extends FieldBase {
     }
     return this.keyValueFunc(target.value);
   }
+}
 
+export class SelectOption {
+  public id: any;
+  public value: string;
+
+  constructor(id: any, value: string) {
+    this.id = id;
+    this.value = value;
+  }
 }
 </script>
 <style lang="scss" scoped>

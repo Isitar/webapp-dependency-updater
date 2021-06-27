@@ -23,9 +23,12 @@ export default {
     outdated: 'Outdated',
     upToDate: 'Up to date',
     updateDependencies: 'Update dependencies',
+    updateRequested: "Update requested",
+    updating: "Updating",
   },
   editSubject: 'Edit {subject}',
   createSubject: 'Create {subject}',
+  noFilter: 'No filter',
   platform: {
     singular: 'Platform',
     plural: 'Platforms',

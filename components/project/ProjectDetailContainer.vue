@@ -3,7 +3,7 @@
     <PageHeader :title="project.name">
       <template v-slot:title>
         <p class="title">{{ project.name }}
-          <ProjectStateTag :is-outdated="project.isOutdated"/>
+          <ProjectStateTag :is-outdated="project.isOutdated" :is-updating="project.isChecking" :update-requested="project.checkRequested"/>
         </p>
       </template>
     </PageHeader>

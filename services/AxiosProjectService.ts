@@ -1,4 +1,4 @@
-import {IProjectService, ProjectCreate, ProjectDetailVm, ProjectListVm, ProjectUpdate} from "~/services/IProjectService";
+import {IProjectService, ProjectCreate, ProjectDetailVm, ProjectListFilter, ProjectListVm, ProjectUpdate} from "~/services/IProjectService";
 import {NuxtAxiosInstance} from "@nuxtjs/axios";
 import AxiosResponseCatcher from "~/services/AxiosResponseCatcher";
 import CreateResponse from "~/services/CreateResponse";
@@ -10,9 +10,9 @@ export default class AxiosProjectService implements IProjectService {
     this.axios = axios;
   }
 
-  projects(): Promise<ProjectListVm[]> {
+  projects(projectListFilter: ProjectListFilter): Promise<ProjectListVm[]> {
     return this.axios.get<ProjectListVm[]>('projects', {
-      params: {},
+      params: projectListFilter,
     })
       .then((res) => res.data)
       .catch(e => Promise.reject(AxiosResponseCatcher.handleAxiosError(e)));
