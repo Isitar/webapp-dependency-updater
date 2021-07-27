@@ -18,7 +18,6 @@ COPY --from=build ./app/node_modules ./node_modules
 COPY --from=build ./app/.nuxt ./.nuxt
 COPY --from=build ./app/static ./static
 
-EXPOSE 8080
 
 ENV HOST=0.0.0.0
 ENV PORT=80
