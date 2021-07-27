@@ -18,6 +18,12 @@ export default {
     '~/assets/scss/main.scss'
   ],
 
+  publicRuntimeConfig: {
+    axios: {
+      baseUrl: process.env.API_URL || 'http://localhost:5000/api/v1/',
+    },
+  },
+
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '~/plugins/services',
@@ -43,8 +49,7 @@ export default {
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    rejectUnauthorized: true,
-    baseUrl: 'http://localhost:5000/api/v1/',
+    rejectUnauthorized: true
   },
 
   i18n: {
